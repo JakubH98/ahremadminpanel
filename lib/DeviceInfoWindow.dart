@@ -19,36 +19,58 @@ class DeviceInfoWindow extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Device information'),
-        backgroundColor: Color.fromARGB(255, 103, 187, 255),
+        backgroundColor: const Color.fromARGB(255, 103, 187, 255),
       ),
+
       body: Align(
         alignment: Alignment.topCenter,
         child: Container(
-          width: 600,
-          height: 500,
+          width: 700,
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
             border: Border.all(width: 5, color: Colors.black),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Device Name: $deviceName'),
-              SizedBox(height: 10),
-              Text('Firmware: $firmware'),
-              SizedBox(height: 10),
-              Text('MAC Address: $macAddress'),
-              SizedBox(height: 10),
-              Text(status),
-              SizedBox(height: 10),
-              Text('CO2 Threshold: ', style: TextStyle(fontSize: 18)),
-              SizedBox(height: 10),
-              Text('Temperature Threshold: ', style: TextStyle(fontSize: 18)),
-              SizedBox(height: 10),
-              Text('Humidity Threshold: ', style: TextStyle(fontSize: 18)),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Device Name: $deviceName'),
+                const SizedBox(height: 10),
+                Text('Firmware: $firmware'),
+                const SizedBox(height: 10),
+                Text('MAC Address: $macAddress'),
+                const SizedBox(height: 10),
+                Text(status),
+                const SizedBox(height: 10),
+                Text('CO2 Threshold: ', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
+                Text('Temperature Threshold: ', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
+                Text('Humidity Threshold: ', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 20),
+
+                Center(
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 300,
+                    width: 500,
+                    color: const Color.fromARGB(255, 211, 209, 209),
+                    child: const Text('insert graph here'),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+                Text('Device statistics: '),
+                const SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: null, 
+                    child: Text('Edit device'),)
+                  )
+              ],
+            ),
           ),
         ),
       ),
