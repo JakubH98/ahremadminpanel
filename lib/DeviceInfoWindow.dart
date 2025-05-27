@@ -44,12 +44,6 @@ class DeviceInfoWindow extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(status),
                 const SizedBox(height: 10),
-                Text('CO2 Threshold: ', style: TextStyle(fontSize: 18)),
-                const SizedBox(height: 10),
-                Text('Temperature Threshold: ', style: TextStyle(fontSize: 18)),
-                const SizedBox(height: 10),
-                Text('Humidity Threshold: ', style: TextStyle(fontSize: 18)),
-                const SizedBox(height: 20),
 
                 Center(
                   child: Container(

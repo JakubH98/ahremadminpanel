@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'DeviceModel.dart';
 import 'AddDeviceWindow.dart';
 import 'DeviceInfoWindow.dart';
+import 'UsersWindow.dart';
+import 'SettingsWindow.dart';
+
 
 void main() {
   runApp(
@@ -53,7 +56,10 @@ class _AdminPanelState extends State<AdminPanel> {
                   const SizedBox(height: 20),
                   ElevatedButton.icon(
                     onPressed: () {
-                     
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (builder) => const UsersWindow()),
+                      );
                     },
                     icon: const Icon(Icons.person),
                     label: const Text('Users'),
@@ -68,7 +74,10 @@ class _AdminPanelState extends State<AdminPanel> {
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
                     onPressed: () {
-                      
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (builder) => const SettingsWindow()),
+                      );
                     },
                     icon: const Icon(Icons.settings),
                     label: const Text('Settings'),
