@@ -22,7 +22,7 @@ class AdminPanel extends StatefulWidget {
 }
 
 class _AdminPanelState extends State<AdminPanel> {
-  bool _showSidebar = false;
+  bool _showSidebar = true;
 
   void _toggleSidebar() {
     setState(() {
@@ -54,6 +54,21 @@ class _AdminPanelState extends State<AdminPanel> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    onPressed: () {
+
+                    },
+                    icon: const Icon(Icons.dashboard),
+                    label: const Text('Dashboard'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 83, 160, 220),
+                      foregroundColor: Colors.black,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                      elevation: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
                   ElevatedButton.icon(
                     onPressed: () {
                       Navigator.push(
@@ -108,7 +123,6 @@ class _AdminPanelState extends State<AdminPanel> {
                 ],
               ),
             ),
-
           Expanded(
             child: Center(
               child: ItemList(), 

@@ -1,33 +1,132 @@
 import 'package:flutter/material.dart';
+import 'UsersWindow.dart';
+import 'main.dart';
 
 
-class SettingsWindow extends StatelessWidget {
+class SettingsWindow extends StatefulWidget {
   const SettingsWindow({super.key});
+
+  @override
+  State<SettingsWindow> createState() => _SettingsWindowState();
+}
+
+class _SettingsWindowState extends State<SettingsWindow> {
+  bool _showSidebar = true;
+
+  void _toggleSidebar() {
+    setState(() {
+      _showSidebar = !_showSidebar;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Users'), 
-        backgroundColor: Color.fromARGB(255, 103, 187, 255),
+        title: const Text('Settings'),
+        backgroundColor: const Color.fromARGB(255, 103, 187, 255),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: _toggleSidebar,
+        ),
       ),
-      body: Center(
-        child: Container(
-          width: 500,
-          height: 400,
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-            border: Border.all(width: 5, color: Colors.black)
+      
+      body: Row(
+        children: [
+          if (_showSidebar)
+            Container(
+              width: 250,
+              color: const Color.fromARGB(255, 83, 160, 220),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 20),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AdminPanel()),
+                      );
+                    },
+                    icon: const Icon(Icons.dashboard),
+                    label: const Text('Dashboard'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 83, 160, 220),
+                      foregroundColor: Colors.black,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                      elevation: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const UsersWindow()),
+                      );
+                    },
+                    
+                    icon: const Icon(Icons.person),
+                    label: const Text('Users'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 83, 160, 220),
+                      foregroundColor: Colors.black,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                      elevation: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.settings),
+                    label: const Text('Settings'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 83, 160, 220),
+                      foregroundColor: Colors.black,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                      elevation: 1,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.logout),
+                    label: const Text('Log out'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 83, 160, 220),
+                      foregroundColor: Colors.black,
+                      alignment: Alignment.centerLeft,
+                      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                      elevation: 1,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          Expanded(
+            child: Center(
+              child: Container(
+                width: 500,
+                height: 400,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                  border: Border.all(width: 5, color: Colors.black),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('TBD(idk what to put here yet)'),
+                  ],
+                ),
+              ),
+            ),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [     
-              const Text('TBD(idk what to put here yet)'),
-            ],
-          )
-        )
+        ],
       ),
     );
   }
