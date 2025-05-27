@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'SettingsWindow.dart';
+import 'settings_window.dart';
 import 'main.dart';
 
 
@@ -8,7 +8,6 @@ class UsersWindow extends StatefulWidget {
 
   @override
   State<UsersWindow> createState() => _UsersWindowState();
-
   }
 
   class _UsersWindowState extends State<UsersWindow> {
@@ -19,9 +18,6 @@ class UsersWindow extends StatefulWidget {
         _showSidebar = !_showSidebar;
       });
     }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +60,7 @@ class UsersWindow extends StatefulWidget {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
-                    onPressed: () {
-
-                    },
+                    onPressed: null,
                     icon: const Icon(Icons.person),
                     label: const Text('Users'),
                     style: ElevatedButton.styleFrom(
@@ -111,6 +105,7 @@ class UsersWindow extends StatefulWidget {
                 ],
               ),
             ),
+
           Expanded(
             child: Center(
               child: Container(

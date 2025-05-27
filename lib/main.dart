@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'DeviceModel.dart';
-import 'AddDeviceWindow.dart';
-import 'DeviceInfoWindow.dart';
-import 'UsersWindow.dart';
-import 'SettingsWindow.dart';
+import 'device_model.dart';
+import 'add_device_window.dart';
+import 'device_info_window.dart';
+import 'users_window.dart';
+import 'settings_window.dart';
 
 
 void main() {
@@ -55,9 +55,7 @@ class _AdminPanelState extends State<AdminPanel> {
                 children: [
                   const SizedBox(height: 20),
                   ElevatedButton.icon(
-                    onPressed: () {
-
-                    },
+                    onPressed: null,
                     icon: const Icon(Icons.dashboard),
                     label: const Text('Dashboard'),
                     style: ElevatedButton.styleFrom(
@@ -101,7 +99,7 @@ class _AdminPanelState extends State<AdminPanel> {
                       foregroundColor: Colors.black,
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-                      elevation: 1,
+                      elevation: 2,
                     ),
                   ),
 

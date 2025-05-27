@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'UsersWindow.dart';
+import 'users_window.dart';
 import 'main.dart';
 
 
@@ -30,7 +30,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
           onPressed: _toggleSidebar,
         ),
       ),
-      
+
       body: Row(
         children: [
           if (_showSidebar)
@@ -79,7 +79,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
                   ),
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: null,
                     icon: const Icon(Icons.settings),
                     label: const Text('Settings'),
                     style: ElevatedButton.styleFrom(
@@ -106,7 +106,8 @@ class _SettingsWindowState extends State<SettingsWindow> {
                 ],
               ),
             ),
-          Expanded(
+
+            Expanded(
             child: Center(
               child: Container(
                 width: 500,
