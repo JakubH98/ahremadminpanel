@@ -120,7 +120,7 @@ class UsersWindow extends StatefulWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('TBD(list of users? with checkbox thingies?)'),
+                    const Text('TBD: User management features will be implemented here.'),
                   ],
                 ),
               ),

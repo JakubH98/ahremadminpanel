@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DeviceInfoWindow extends StatelessWidget {
   final String deviceName;
+  final int? deviceId;
   final String firmware;
   final String macAddress;
   final String status;
@@ -9,6 +10,7 @@ class DeviceInfoWindow extends StatelessWidget {
   const DeviceInfoWindow({
     super.key,
     required this.deviceName,
+    required this.deviceId,
     required this.firmware,
     required this.macAddress,
     required this.status,
@@ -37,13 +39,15 @@ class DeviceInfoWindow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Device Name: $deviceName'),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
+                Text('Device ID: $deviceId'),
+                const SizedBox(height: 5),
                 Text('Firmware: $firmware'),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text('MAC Address: $macAddress'),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(status),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
 
                 Center(
                   child: Container(
@@ -51,7 +55,7 @@ class DeviceInfoWindow extends StatelessWidget {
                     height: 300,
                     width: 500,
                     color: const Color.fromARGB(255, 211, 209, 209),
-                    child: const Text('insert graph here'),
+                    child: const Text('TODO: insert graph here'),
                   ),
                 ),
 

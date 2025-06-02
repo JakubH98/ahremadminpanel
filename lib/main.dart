@@ -181,7 +181,6 @@ class _ItemListState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
 
-
     return Column(
       children: [
         const SizedBox(height: 90),
@@ -205,6 +204,7 @@ class _ItemListState extends State<ItemList> {
                       final device = devices[index];
                       return DeviceItem(
                         deviceName: device.deviceName,
+                        deviceId: device.deviceId,
                         firmware: device.firmware,
                         macAdress: device.macAddress,
                         status: device.isActive ? 'Device status: running':'Device status: off',
@@ -238,6 +238,7 @@ class _ItemListState extends State<ItemList> {
 
 class DeviceItem extends StatelessWidget {
   final String deviceName;
+  final int? deviceId;
   final String status;
   final String firmware;
   final String macAdress;
@@ -245,6 +246,7 @@ class DeviceItem extends StatelessWidget {
   const DeviceItem({
     super.key,
     required this.deviceName,
+    required this.deviceId,
     required this.status,
     required this.firmware,
     required this.macAdress
@@ -277,6 +279,8 @@ class DeviceItem extends StatelessWidget {
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 2),
+                Text('Device ID: $deviceId', style: const TextStyle(fontSize: 14)),
+                const SizedBox(height: 2),
                 Text(status, style: const TextStyle(fontSize: 14)),
                 const SizedBox(height: 2),
                 Text(firmware, style: const TextStyle(fontSize: 14)),
@@ -292,6 +296,7 @@ class DeviceItem extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (builder) => DeviceInfoWindow(
                   deviceName: deviceName,
+                  deviceId: deviceId,
                   firmware: firmware,
                   macAddress: macAdress,
                   status: status,

@@ -124,7 +124,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('TBD(idk what to put here yet)'),
+                    const Text('TBD: Settings options will be added here in the future.'),
                   ],
                 ),
               ),
