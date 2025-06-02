@@ -58,6 +58,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
                       elevation: 1,
                     ),
                   ),
+
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
                     onPressed: () {
@@ -77,6 +78,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
                       elevation: 1,
                     ),
                   ),
+
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
                     onPressed: null,
@@ -90,6 +92,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
                       elevation: 1,
                     ),
                   ),
+
                   const SizedBox(height: 10),
                   ElevatedButton.icon(
                     onPressed: () {},
@@ -102,7 +105,7 @@ class _SettingsWindowState extends State<SettingsWindow> {
                       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
                       elevation: 1,
                     ),
-                  ),
+                  ),                  
                 ],
               ),
             ),
