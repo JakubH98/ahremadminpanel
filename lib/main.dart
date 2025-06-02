@@ -4,12 +4,15 @@ import 'add_device_window.dart';
 import 'device_info_window.dart';
 import 'users_window.dart';
 import 'settings_window.dart';
+import 'http_service.dart';
+
 
 
 void main() {
   runApp(
     const MaterialApp(
       home: AdminPanel(), 
+      
     ),
   );
 }
@@ -32,6 +35,7 @@ class _AdminPanelState extends State<AdminPanel> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent, // stopper appbaren med at skifte farve
@@ -140,89 +144,80 @@ class ItemList extends StatefulWidget {
   State<ItemList> createState() => _ItemListState();
 }
 
-class _ItemListState extends State<ItemList>{
+class _ItemListState extends State<ItemList> {
   final ScrollController _scrollController = ScrollController();
+  final HttpService httpService = HttpService();
+
+  List<Device> devices = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadDevices();
+  }
+
+  Future<void> loadDevices() async {
+    try {
+      final fetchedDevices = await httpService.fetchDevices();
+      setState(() {
+        devices = fetchedDevices;
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Error: $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
 
   @override
   void dispose() {
-    _scrollController.dispose(); 
+    _scrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    var status = true;  
-    var check = (status == true) ? 'device is running':'device is off';
 
-    List<Device> devices = [
-      Device(
-        deviceName: 'Device 1',
-        firmware: 'Firmware Version: 1.01',
-        macAddress: '1A:2B:3C:4D:5E',
-      ),
-      Device(
-        deviceName: 'Device 2',
-        firmware: 'Firmware Version: 1.01',
-        macAddress: '1E:A3:A1:E:69',
-      ),
-      Device(
-        deviceName: 'Device 3',
-        firmware: 'Firmware Version: 1.01',
-        macAddress: '1R:12:R1:60:69',
-      ),
-      Device(
-        deviceName: 'Device 4',
-        firmware: 'Firmware Version: 1.0 (Update Available)',
-        macAddress: '2R:2D:2E:4C:69',
-      ),
-      Device(
-        deviceName: 'Device 5',
-        firmware: 'Firmware Version: 1.01',
-        macAddress: 'F4:A3:G0:G1:E6',
-      ),
-      Device(
-        deviceName: 'Device 6',
-        firmware: 'Firmware Version: 1.01',
-        macAddress: 'F4:A3:G0:G1:A6',
-      ),
-    ];
 
     return Column(
       children: [
-        const SizedBox(height: 90), // skub ned fra toppen
-          Align(
+        const SizedBox(height: 90),
+        Align(
           alignment: Alignment.topCenter,
           child: Container(
             height: 400,
             width: 800,
-            padding: EdgeInsets.all(5),
+            padding: const EdgeInsets.all(5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              color: Colors.white, 
-              border: Border.all(width: 5, color: Colors.black)),
-              
-            child: ListView.separated(
-              controller: _scrollController,
-              itemCount: devices.length,
-
-              itemBuilder: (context, index) {
-                final device = devices[index];
-                return DeviceItem(
-                deviceName: device.deviceName, 
-                status: 'Device status: $check', 
-                firmware: device.firmware, 
-                macAdress: device.macAddress
-                );
-              },
-              
-              separatorBuilder: (context, index) => const Divider(
-                color: Colors.black,
-                thickness: 2,
-                height: 1,
-                indent: 8,
-                endIndent: 10,          
-              ),                      
+              color: Colors.white,
+              border: Border.all(width: 5, color: Colors.black),
             ),
+            child: isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.separated(
+                    controller: _scrollController,
+                    itemCount: devices.length,
+                    itemBuilder: (context, index) {
+                      final device = devices[index];
+                      return DeviceItem(
+                        deviceName: device.deviceName,
+                        firmware: device.firmware,
+                        macAdress: device.macAddress,
+                        status: device.isActive ? 'Device status: running':'Device status: off',
+                      );
+                    },
+                    separatorBuilder: (context, index) => const Divider(
+                      color: Colors.black,
+                      thickness: 2,
+                      height: 1,
+                      indent: 8,
+                      endIndent: 10,
+                    ),
+                  ),
           ),
         ),
         const SizedBox(height: 10),
@@ -231,13 +226,15 @@ class _ItemListState extends State<ItemList>{
             Navigator.push(
               context,
               MaterialPageRoute(builder: (builder) => const AddDeviceWindow()),
-              );
-            }, 
-          child: const Text("Add Device"))
+            );
+          },
+          child: const Text("Add Device"),
+        ),
       ],
-    );      
+    );
   }
 }
+
 
 class DeviceItem extends StatelessWidget {
   final String deviceName;
